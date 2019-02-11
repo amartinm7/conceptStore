@@ -1,8 +1,16 @@
 package com.amm.concept.store.domain;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import javax.persistence.*;
 import java.util.Set;
 
+@Slf4j
+@Data
+@NoArgsConstructor
 @Entity
 public class Store{
     @Id
