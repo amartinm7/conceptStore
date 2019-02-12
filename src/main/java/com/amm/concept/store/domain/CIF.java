@@ -6,4 +6,11 @@ import javax.persistence.Embeddable;
 public class CIF {
     // 9 dígitos alfanuméricos
     String cifId;
+
+    public CIF() {
+    }
+
+    public CIF(String cifId) {
+        this.cifId = cifId;
+    }
 }
