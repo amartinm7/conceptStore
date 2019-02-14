@@ -1,5 +1,6 @@
 package com.amm.concept.store.domain;
 
+import com.amm.concept.store.domain.repository.CatalogDAO;
 import com.amm.concept.store.domain.repository.StoreDAO;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,24 +14,32 @@ import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class StoreRepositoryIntegrationTest {
+public class CatalogDAOIntegrationTest {
 
     @Autowired
     private TestEntityManager entityManager;
 
     @Autowired
-    private StoreDAO storeDAO;
+    private CatalogDAO catalogDAO;
 
     @Test
     public void saveStoreIsTrue() {
         //given
-        /*
         Store store = new Store();
-        store.setName("testStore");
+        store.setName("colchonXpress");
         entityManager.persist(store);
         entityManager.flush();
-        **/
-        Optional<Store> storeTemp = storeDAO.findById(1L);
-        Assert.assertNotNull(storeTemp.get());
+
+        Catalog catalog = new Catalog();
+        catalog.setCatalogRef("colchonesRef");
+        catalog.setName("colchones");
+        catalog.setStore(store);
+        store.getCatalogs().add(catalog);
+        entityManager.persist(catalog);
+        entityManager.flush();
+
+        Optional<Catalog> catalogOptional = catalogDAO.findById(2L);
+        Assert.assertTrue(catalogOptional.isPresent());
     }
+
 }
